@@ -8,16 +8,18 @@ export default function Carousel({ items, maxNumberPerPage }) {
   const [position, setPosition] = useState(0);
   const [{ x }, set] = useSpring(() => ({ x: "0%" }));
 
+  const OFFSET_PERCENTAGE = 100;
+
   useEffect(() => {
     set({ x: `${position}%` });
   }, [set, position]);
 
   function handlePrevious() {
-    setPosition((curPosition) => curPosition + 100);
+    setPosition((curPosition) => curPosition + OFFSET_PERCENTAGE);
   }
 
   function handleNext() {
-    setPosition((curPosition) => curPosition - 100);
+    setPosition((curPosition) => curPosition - OFFSET_PERCENTAGE);
   }
 
   function hasPrevious() {
@@ -27,7 +29,7 @@ export default function Carousel({ items, maxNumberPerPage }) {
   function hasNext() {
     if (items.length <= maxNumberPerPage) return false;
     const numberOfPages = Math.floor(items.length / maxNumberPerPage);
-    return position > numberOfPages * -100;
+    return position > numberOfPages * -OFFSET_PERCENTAGE;
   }
 
   return (
@@ -35,7 +37,11 @@ export default function Carousel({ items, maxNumberPerPage }) {
       <Control side={"left"} action={handlePrevious} show={hasPrevious()} />
       <MovingStripe style={{ x }}>
         {items.map((item) => (
-          <Card key={item} image={item} maxNumberPerPage={maxNumberPerPage} />
+          <Card
+            key={item.id}
+            color={item.color}
+            maxNumberPerPage={maxNumberPerPage}
+          />
         ))}
       </MovingStripe>
 

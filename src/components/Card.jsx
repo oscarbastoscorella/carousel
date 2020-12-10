@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import CoolPig from "./CoolPig";
 
-export default function Card({ image, maxNumberPerPage }) {
+export default function Card({ color, maxNumberPerPage }) {
   return (
     <Container perpage={100 / maxNumberPerPage}>
       <ImageContainer>
-        <Image>{image}</Image>
+        <Image>
+          <CoolPig color={color} />
+        </Image>
       </ImageContainer>
     </Container>
   );
@@ -18,19 +21,18 @@ const Container = styled.div`
 `;
 
 const ImageContainer = styled.div`
+  background: #d2d2d2;
   border-radius: 5px;
   padding-top: 65%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 `;
 
 const Image = styled.div`
-  height: 100%;
-  background: #bbbbbb;
-  width: 100%;
+  height: 61%;
+  width: 61%;
   position: absolute;
   top: 0px;
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
 `;

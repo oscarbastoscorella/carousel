@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
 import leftArrow from "./assets/arrow_left.svg";
@@ -7,17 +7,21 @@ import rightArrow from "./assets/arrow_right.svg";
 export default function Control({ side, action, show }) {
   const [{ scale }, set] = useSpring(() => ({ scale: 1 }));
 
+  useEffect(() => {
+    if (!show) set({ scale: 1 });
+  }, [show, set]);
+
   return (
     <>
       {show && (
         <Container
           side={side}
+          opacity={show ? 1 : 0}
           onMouseEnter={() => set({ scale: 1.3 })}
           onMouseLeave={() => set({ scale: 1 })}
-          opacity={show ? 1 : 0}
         >
           <Icon
-            onClick={() => action()}
+            onClick={action}
             src={side === "left" ? leftArrow : rightArrow}
             style={{ scale }}
           />
@@ -28,16 +32,16 @@ export default function Control({ side, action, show }) {
 }
 
 const Container = styled(animated.div)`
-  background: #80808085;
+  background: #656565b8;
   width: 75px;
   height: 100%;
   position: absolute;
+  opacity: ${(props) => props.opacity};
   right: ${(props) => (props.side === "left" ? 100 : 0)};
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: ${(props) => props.opacity};
 `;
 
 const Icon = styled(animated.img)`
