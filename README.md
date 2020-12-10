@@ -1,4 +1,4 @@
-# Creating a Carousel from scratch
+# Create a React Carousel from scratch
 
 ## Getting Started
 
