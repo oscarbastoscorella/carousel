@@ -1,4 +1,4 @@
-# Carousel
+# Creating a Carousel from scratch
 
 ## Getting Started
 
@@ -31,23 +31,6 @@ Start web app in development mode
 ```
 execute: npm start
 web app: http://localhost:3000
-```
-
-### Testing
-
-Run Jest tests
-
-```
-execute: npm test
-```
-
-### Build
-
-Run Tests, create build and start web server
-
-```
-execute: npm run build
-web app: http://localhost:8080
 ```
 
 ## Author
