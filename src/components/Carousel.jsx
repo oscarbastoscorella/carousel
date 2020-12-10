@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import styled from "styled-components";
-import Slider from "./Slider";
+import Card from "./Card";
+import Control from "./Control";
 
 export default function Carousel({ items, maxNumberPerPage }) {
   const [position, setPosition] = useState(0);
@@ -11,11 +12,19 @@ export default function Carousel({ items, maxNumberPerPage }) {
     set({ x: `${position}%` });
   }, [set, position]);
 
-  function displayPreviousButton() {
+  function handlePrevious() {
+    setPosition((curPosition) => curPosition + 100);
+  }
+
+  function handleNext() {
+    setPosition((curPosition) => curPosition - 100);
+  }
+
+  function hasPrevious() {
     return position < 0;
   }
 
-  function displayNextButton() {
+  function hasNext() {
     if (items.length <= maxNumberPerPage) return false;
     const numberOfPages = Math.floor(items.length / maxNumberPerPage);
     return position > numberOfPages * -100;
@@ -23,33 +32,20 @@ export default function Carousel({ items, maxNumberPerPage }) {
 
   return (
     <Container>
-      {displayPreviousButton() && (
-        <Button
-          side={"left"}
-          onClick={() => setPosition((curPosition) => curPosition + 100)}
-        >
-          previous
-        </Button>
-      )}
+      <Control side={"left"} action={handlePrevious} show={hasPrevious()} />
       <MovingStripe style={{ x }}>
         {items.map((item) => (
-          <Slider key={item} image={item} maxNumberPerPage={maxNumberPerPage} />
+          <Card key={item} image={item} maxNumberPerPage={maxNumberPerPage} />
         ))}
       </MovingStripe>
-      {displayNextButton() && (
-        <Button
-          side={"right"}
-          onClick={() => setPosition((curPosition) => curPosition - 100)}
-        >
-          next
-        </Button>
-      )}
+
+      <Control side={"right"} action={handleNext} show={hasNext()} />
     </Container>
   );
 }
 
 const Container = styled(animated.div)`
-  width: 100%;
+  width: 85%;
   overflow: hidden;
   display: flex;
   position: relative;
@@ -60,13 +56,4 @@ const MovingStripe = styled(animated.div)`
   display: flex;
   width: 100%;
   height: 100%;
-`;
-
-const Button = styled.button`
-  width: 100px;
-  height: 50px;
-  cursor: pointer;
-  position: absolute;
-  right: ${(props) => (props.side === "left" ? 100 : 0)};
-  z-index: 2;
 `;

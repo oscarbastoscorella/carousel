@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Slider({ image, maxNumberPerPage }) {
+export default function Card({ image, maxNumberPerPage }) {
   return (
     <Container perpage={100 / maxNumberPerPage}>
-      <CardContainer>
-        <Card>{image}</Card>
-      </CardContainer>
+      <ImageContainer>
+        <Image>{image}</Image>
+      </ImageContainer>
     </Container>
   );
 }
@@ -17,16 +17,16 @@ const Container = styled.div`
   width: calc(${(props) => props.perpage}% - 4px);
 `;
 
-const CardContainer = styled.div`
+const ImageContainer = styled.div`
   border-radius: 5px;
   padding-top: 65%;
   position: relative;
   overflow: hidden;
 `;
 
-const Card = styled.div`
+const Image = styled.div`
   height: 100%;
-  background: hotpink;
+  background: #bbbbbb;
   width: 100%;
   position: absolute;
   top: 0px;
