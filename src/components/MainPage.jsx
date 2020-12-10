@@ -6,7 +6,7 @@ import { items } from "./items";
 export default function MainPage() {
   return (
     <Container>
-      <Carousel items={items} maxNumberPerPage={6} />
+      <Carousel items={items} maxNumberPerPage={5} />
     </Container>
   );
 }

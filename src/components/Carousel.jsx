@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import Control from "./Control";
 
-export default function Carousel({ items, maxNumberPerPage }) {
+export default function Carousel({ items, maxNumberPerPage = 5 }) {
   const [position, setPosition] = useState(0);
   const [{ x }, set] = useSpring(() => ({ x: "0%" }));
 
@@ -51,7 +51,7 @@ export default function Carousel({ items, maxNumberPerPage }) {
 }
 
 const Container = styled(animated.div)`
-  width: 85%;
+  width: 100%;
   overflow: hidden;
   display: flex;
   position: relative;
