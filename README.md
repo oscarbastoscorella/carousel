@@ -1,8 +1,5 @@
 # Create a React Carousel from scratch
 
-Please visit:
-https://oscarbastos.medium.com/back-to-the-basics-lets-create-a-carousel-from-scratch-4a97e7fa6f05
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
