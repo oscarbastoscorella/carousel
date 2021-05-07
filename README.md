@@ -1,6 +1,7 @@
 # Create a React Carousel from scratch
 
-How to create a basic carousel using React, React-Spring and Styled-Components
+How to create a basic carousel using React, React-Spring and Styled-Components:
+
 https://oscarbastos.medium.com/building-a-cool-carousel-component-using-react-styled-components-and-react-spring-5024e59e0d7e
 
 ## Getting Started
